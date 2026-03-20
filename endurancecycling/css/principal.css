@@ -1,7 +1,7 @@
 :root {
   --orange: #fe6e3c;
   --black: #0a0a0a;
-  --blackc:#111111;
+  --blackc: #111111;
   --white: #ffffff;
   --gray: #888;
 }
@@ -12,42 +12,59 @@
   box-sizing: border-box;
 }
 
-header {
-  font-family: 'Inter', sans-serif;
-  background: var(--black);
-  color: var(--white);
-}
-
 body {
   font-family: 'Inter', sans-serif;
   background: var(--blackc);
   color: var(--white);
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
+/* =====================
+   HEADER
+   ===================== */
+
+header {
+  font-family: 'Inter', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  position: relative;   /* nécessaire pour le menu absolu sur mobile */
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 5%;
+  width: 100%;
+  max-width: 100%;  /* annule le max-width de .container */
+  margin: 0;        /* annule le margin: auto de .container */
 }
+
+/* =====================
+   LOGO & SUBTITLE
+   ===================== */
 
 .logo-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   gap: 8px;
+  flex-wrap: nowrap;
+  padding-bottom: 2px;
+}
+
+/* Ligne 2 sur desktop : subtitle + icône alignés sur le bas du "g" */
+.logo-second-line {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 6px;
 }
 
 .logo {
   font-weight: 600;
   letter-spacing: 2px;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .logo a {
@@ -56,45 +73,29 @@ body {
 }
 
 .logo-sub {
-  display: inline-block;
   height: 25px;
-  margin: 0;
-  position: relative;
-  top: 4px;
+  width: auto;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .subtitle {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--gray);
-  margin-left: 5px;
-  position: relative;
-  top: 10px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-  .subtitle {
-    font-size: 0.9rem;
-    position: relative;
-    top: 28px;
-    left: -60px;
-  }
-
-  .logo-sub {
-    display: inline-block;
-    height: 20px;
-    margin: 0;
-    position: relative;
-    top: 25px;
-    left: -60px;
-  }
-}
+/* =====================
+   NAVIGATION
+   ===================== */
 
 nav a {
   color: var(--white);
   margin-left: 30px;
   text-decoration: none;
   position: relative;
+  white-space: nowrap;
 }
 
 nav a::after {
@@ -111,6 +112,42 @@ nav a::after {
 nav a:hover::after {
   width: 100%;
 }
+
+/* =====================
+   HAMBURGER
+   ===================== */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: 0.3s;
+  display: block;
+}
+
+/* =====================
+   CONTAINER (pour les sections, pas le header)
+   ===================== */
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* =====================
+   HERO
+   ===================== */
 
 .hero {
   position: relative;
@@ -144,6 +181,10 @@ nav a:hover::after {
   color: var(--white);
 }
 
+/* =====================
+   BOUTON
+   ===================== */
+
 .btn {
   display: inline-block;
   background: var(--orange);
@@ -159,6 +200,10 @@ nav a:hover::after {
   transform: scale(1.1);
   opacity: 0.7;
 }
+
+/* =====================
+   SECTIONS
+   ===================== */
 
 .section {
   padding: 80px 0;
@@ -186,34 +231,22 @@ nav a:hover::after {
   border-left: 3px solid var(--orange);
 }
 
+/* =====================
+   FOOTER
+   ===================== */
+
 footer {
   text-align: center;
   padding: 40px;
   color: var(--gray);
 }
 
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: var(--white);
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
 /* =====================
-   STAGES GRID — CORRIGÉ
+   STAGES GRID
    ===================== */
 
 .stages-grid {
   display: grid;
-  /* 3 colonnes égales sur desktop */
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
@@ -234,8 +267,8 @@ footer {
 
 .stage-card img {
   width: 100%;
-  height: 200px;       /* hauteur fixe */
-  object-fit: cover;   /* recadre proprement sans déformer */
+  height: 200px;
+  object-fit: cover;
   display: block;
 }
 
@@ -269,45 +302,84 @@ footer {
 }
 
 /* =====================
-   RESPONSIVE MOBILE
+   RESPONSIVE — TABLETTE & MOBILE (≤1024px)
+   Burger actif dès la tablette
    ===================== */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
-  /* Hamburger */
   .hamburger {
     display: flex;
   }
 
-  /* Logo container */
-  .logo-container {
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-  }
-
+  /* Menu déroulant positionné par rapport au header */
   nav {
     display: none;
     flex-direction: column;
     background: var(--black);
     position: absolute;
-    top: 70px;
+    top: 100%;
     right: 0;
     width: 200px;
     padding: 10px 0;
     border-radius: 0 0 8px 8px;
     z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
   }
 
   nav.active {
     display: flex;
-    height: auto;
   }
 
   nav a {
     margin: 0;
     padding: 12px 20px;
     border-bottom: 1px solid #333;
+  }
+
+  nav a:last-child {
+    border-bottom: none;
+  }
+
+  .stages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =====================
+   RESPONSIVE — MOBILE (≤768px)
+   ===================== */
+
+@media (max-width: 768px) {
+
+  /* Ligne 1 : Endurance Cycling / Ligne 2 : by Watts Mafia + icône */
+  .logo-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;        /* plus d'espace entre les deux lignes */
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+
+  .logo-second-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+    margin-bottom: 0;  /* annule le margin-bottom négatif du desktop */
+  }
+
+  .logo-sub {
+    height: 20px;
+    margin-bottom: 1px; /* augmente pour remonter davantage */
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
   }
 
   .hero h2 {
@@ -318,8 +390,17 @@ footer {
     flex-direction: column;
   }
 
-  /* 1 colonne sur mobile */
   .stages-grid {
     grid-template-columns: 1fr;
   }
+
+  .nav {
+  align-items: flex-start;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.hamburger {
+  margin-top: 4px;
+}
 }
