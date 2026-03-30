@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Endurance Cycling</title>
+  <title>Galerie photos</title>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/general/watts-mafia-logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,40 +28,35 @@
       <span></span>
     </div>
     <nav id="nav-links">
+      <a href="index.html">Accueil</a>
       <a href="stages.html">Stages</a>
-      <a href="galerie-photos.html">Galerie photos</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
-  <div class="overlay"></div>
-  <div class="hero-content">
-    <h2>Ride for pleasure</h2>
-    <p>Stages cyclisme en France et à l'étranger avec prestations premium</p>
-    <a href="stages.html" class="btn">Découvrir les stages</a>
-    <a href="galerie-photos.html" class="btn">Découvrir la galerie photo</a>
-  </div>
-</section>
+<!-- SECTION ALBUMS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Galerie photos</h2>
+    <div class="stages-grid">
 
-<section class="section container">
-  <h2 class="section-title">Expérience unique</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Parcours magnifiques</h3>
-      <p>Cols mythiques, paysages incroyables, notre équipe trace les meilleurs parcours de la région pour vous</p>
-    </div>
-    <div class="card">
-      <h3>Accompagnement personnalisé</h3>
-      <p>Voiture suiveuse, ravitaillement solide et liquide, shooting photo, test lactate, conseils...</p>
-    </div>
-    <div class="card">
-      <h3>Hôtels "cyclistes"</h3>
-      <p>Nos hébergements partenaires ont l'habitude de recevoir des cyclistes, vous vous sentirez comme chez vous</p>
+      <!-- Album 1 -->
+      <a href="album-costa-blanca.html" class="stage-link">
+        <div class="stage-card">
+          <img src="images/general/altea-53x11.jpg" alt="Album Costa Blanca 2026">
+          <div class="stage-content">
+            <h3>Costa Blanca</h3>
+            <h5>Février 2026</h5>
+            <p>Revivez notre stage organisé à Altea, Espagne</p>
+          </div>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <p>© 2026 - Endurance Cycling - Watts Mafia</p>
 </footer>
@@ -73,13 +68,14 @@
   </svg>
 </button>
 
+<!-- JS HAMBURGER -->
 <script>
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
   });
-  
+
 /* --- Retour en haut --- */
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 
