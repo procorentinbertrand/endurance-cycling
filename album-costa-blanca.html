@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Album - Costa Blanca</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/general/watts-mafia-logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/principal.css">
+  <link rel="stylesheet" href="css/galerie.css">
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo-container">
+      <h1 class="logo"><a href="index.html">Endurance Cycling</a></h1>
+      <div class="logo-second-line">
+        <span class="subtitle">by Watts Mafia</span>
+        <img src="images/general/watts-mafia-logo.png" alt="Watts Mafia" class="logo-sub">
+      </div>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="stages.html">Stages</a>
+      <a href="galerie-photos.html">Galerie photos</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO ALBUM -->
+<div class="album-hero">
+  <div class="overlay"></div>
+  <div class="album-hero-content">
+    <h2>Costa Blanca</h2>
+    <h5>Février 2026</h5>
+  </div>
+</div>
+
+<!-- GRILLE PHOTOS -->
+<section class="section">
+  <div class="container">
+    <div class="photo-grid">
+
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-1.jpg" alt="Photo 1 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-2.jpg" alt="Photo 2 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-3.jpg" alt="Photo 3 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-4.jpg" alt="Photo 4 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-5.jpg" alt="Photo 5 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-6.jpg" alt="Photo 6 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-7.jpg" alt="Photo 7 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-8.jpg" alt="Photo 8 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-9.jpg" alt="Photo 9 — Altea">
+      </div>
+      <div class="photo-item" onclick="openLightbox(this)">
+        <img src="images/altea-2026/altea-10.jpg" alt="Photo 10 — Altea">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIEN RETOUR -->
+<div class="container" style="padding-bottom: 60px;">
+  <a href="galerie-photos.html" class="btn">← Retour à la galerie photos</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 - Endurance Cycling - Watts Mafia</p>
+</footer>
+
+<!-- BOUTON RETOUR EN HAUT -->
+<button id="scrollTopBtn" class="scroll-top-btn" aria-label="Retour en haut de page">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-prev" onclick="changePhoto(-1, event)">&#8249;</button>
+  <img src="" alt="" id="lightbox-img">
+  <button class="lightbox-next" onclick="changePhoto(1, event)">&#8250;</button>
+</div>
+
+<!-- JS HAMBURGER + LIGHTBOX -->
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Lightbox
+  const photos = Array.from(document.querySelectorAll('.photo-item img'));
+  let currentIndex = 0;
+
+  function openLightbox(item) {
+    const img = item.querySelector('img');
+    currentIndex = photos.indexOf(img);
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-img').alt = img.alt;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function changePhoto(direction, event) {
+    event.stopPropagation();
+    currentIndex = (currentIndex + direction + photos.length) % photos.length;
+    document.getElementById('lightbox-img').src = photos[currentIndex].src;
+    document.getElementById('lightbox-img').alt = photos[currentIndex].alt;
+  }
+
+  // Fermer avec la touche Échap
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') changePhoto(1, { stopPropagation: () => {} });
+    if (e.key === 'ArrowLeft') changePhoto(-1, { stopPropagation: () => {} });
+  });
+
+/* --- Retour en haut --- */
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>

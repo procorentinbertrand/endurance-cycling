@@ -1,0 +1,165 @@
+/* ================================================
+   galerie.css
+   Styles pour les pages galerie et albums photos
+   ================================================ */
+
+/* ── HERO ALBUM ── */
+.album-hero {
+  position: relative;
+  height: 30vh;
+  min-height: 180px;
+  background: url('../images/tourmalet.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.album-hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+}
+
+.album-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px 5%;
+}
+
+.album-hero-content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+  letter-spacing: 3px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.album-hero-content h5 {
+  color: var(--orange);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ── GRILLE PHOTOS ── */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.photo-item {
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  background: #1a1a1a;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.photo-item:hover img {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.8);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 3.5rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  padding: 0 20px;
+  line-height: 1;
+}
+
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  opacity: 1;
+}
+
+/* ── RESPONSIVE — TABLETTE ── */
+@media (max-width: 1024px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+
+  .album-hero {
+    height: 20vh;
+  }
+}
+
+/* ── RESPONSIVE — MOBILE ── */
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+
+  .album-hero {
+    height: 20vh;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 2.5rem;
+    padding: 0 10px;
+  }
+}

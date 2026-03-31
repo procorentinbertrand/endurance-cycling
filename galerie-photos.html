@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Galerie photos</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/general/watts-mafia-logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/principal.css">
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo-container">
+      <h1 class="logo"><a href="index.html">Endurance Cycling</a></h1>
+      <div class="logo-second-line">
+        <span class="subtitle">by Watts Mafia</span>
+        <img src="images/general/watts-mafia-logo.png" alt="Watts Mafia" class="logo-sub">
+      </div>
+    </div>
+    <!-- Bouton hamburger -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="stages.html">Stages</a>
+    </nav>
+  </div>
+</header>
+
+<!-- SECTION ALBUMS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Galerie photos</h2>
+    <div class="stages-grid">
+
+      <!-- Album 1 -->
+      <a href="album-costa-blanca.html" class="stage-link">
+        <div class="stage-card">
+          <img src="images/general/vignette-altea.jpg" alt="Album Costa Blanca 2026">
+          <div class="stage-content">
+            <h3>Costa Blanca</h3>
+            <h5>Février 2026</h5>
+            <p>Revivez notre stage organisé à Altea, Espagne</p>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 - Endurance Cycling - Watts Mafia</p>
+</footer>
+
+<!-- BOUTON RETOUR EN HAUT -->
+<button id="scrollTopBtn" class="scroll-top-btn" aria-label="Retour en haut de page">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<!-- JS HAMBURGER -->
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+/* --- Retour en haut --- */
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
