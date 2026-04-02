@@ -150,6 +150,32 @@
     if (e.key === 'ArrowLeft') changePhoto(-1, { stopPropagation: () => {} });
   });
 
+  // Swipe tactile (mobile & tablette)
+  const lightbox = document.getElementById('lightbox');
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', (e) => {
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+    // On ne déclenche le swipe que si le mouvement est principalement horizontal
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+      if (deltaX < 0) {
+        // Swipe vers la gauche → photo suivante
+        changePhoto(1, { stopPropagation: () => {} });
+      } else {
+        // Swipe vers la droite → photo précédente
+        changePhoto(-1, { stopPropagation: () => {} });
+      }
+    }
+  }, { passive: true });
+
 /* --- Retour en haut --- */
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 
